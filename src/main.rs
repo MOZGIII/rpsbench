@@ -8,8 +8,9 @@ use std::*;
 
 #[async]
 fn work() -> Result<(), ()> {
-  println!("Hello from {:?}", thread::current().id());
-  Ok(())
+  loop {
+    println!("Hello from {:?}", thread::current().id());
+  }
 }
 
 #[async]
@@ -17,7 +18,7 @@ fn run() -> Result<(), ()> {
   let pool = CpuPool::new_num_cpus();
 
   loop {
-    await!(pool.spawn(work()));
+    pool.spawn(work());
   }
 }
 
