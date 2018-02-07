@@ -14,7 +14,7 @@ fn work() -> Result<(), ()> {
 
 #[async]
 fn run() -> Result<(), ()> {
-  let pool = CpuPool::new(4);
+  let pool = CpuPool::new_num_cpus();
 
   loop {
     await!(pool.spawn(work()));
