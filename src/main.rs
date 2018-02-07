@@ -8,20 +8,20 @@ use std::*;
 
 #[async]
 fn work() -> Result<(), ()> {
-  loop {
-    println!("Hello from {:?}", thread::current().id());
-  }
+    loop {
+        println!("Hello from {:?}", thread::current().id());
+    }
 }
 
 #[async]
 fn run() -> Result<(), ()> {
-  let pool = CpuPool::new_num_cpus();
+    let pool = CpuPool::new_num_cpus();
 
-  loop {
-    pool.spawn(work());
-  }
+    loop {
+        pool.spawn(work());
+    }
 }
 
 fn main() {
-  run().wait().unwrap()
+    run().wait().unwrap()
 }
